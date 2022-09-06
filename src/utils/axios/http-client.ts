@@ -13,14 +13,14 @@ export class HttpClient {
     if (interceptorOptions) {
       this.axiosInstance.interceptors.request.use(
         interceptorOptions.onRequestFulfilled,
-        interceptorOptions.onRequestRejected,
-        interceptorOptions.requestOptions
+        // interceptorOptions.onRequestRejected,
+        // interceptorOptions.requestOptions
       );
-      this.axiosInstance.interceptors.response.use(
-        interceptorOptions.onResponseFulfilled,
-        interceptorOptions.onResponseRejected,
-        interceptorOptions.responseOptions
-      );
+      // this.axiosInstance.interceptors.response.use(
+      //   interceptorOptions.onResponseFulfilled,
+      //   interceptorOptions.onResponseRejected,
+      //   interceptorOptions.responseOptions
+      // );
     }
   }
 

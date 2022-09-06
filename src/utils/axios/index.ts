@@ -2,6 +2,7 @@ import type { AxiosRequestConfig } from "axios";
 import { HttpClient } from "./http-client";
 
 const onRequestFulfilled = (requestConfig: AxiosRequestConfig) => {
+  debugger
   const headers = requestConfig.headers || {};
   const accessToken = "";
   if (accessToken && !headers["Authorization"]) {
@@ -9,7 +10,7 @@ const onRequestFulfilled = (requestConfig: AxiosRequestConfig) => {
   }
 
   if (requestConfig.headers) {
-    requestConfig = headers;
+    requestConfig.headers = headers;
   }
 
   return requestConfig;

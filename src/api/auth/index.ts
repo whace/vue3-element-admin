@@ -7,12 +7,12 @@ export function accountLogin(params: AccountLoginParam) {
 
 const a: OAuth2LoginParam = Object.assign({ grant_type: "a" });
 
-console.log(a);
 
-function login(params: OAuth2LoginParam) {
+function login(data: OAuth2LoginParam) {
+  debugger;
   return httpClient.request<LoginResult>({
-    url: "/oauth/login",
+    url: "/login",
     method: "POST",
-    params,
+    data,
   });
 }
