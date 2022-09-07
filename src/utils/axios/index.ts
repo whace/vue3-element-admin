@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig } from "axios";
+import type { AxiosRequestConfig, AxiosResponse } from "axios";
 import { HttpClient } from "./http-client";
 
 const onRequestFulfilled = (requestConfig: AxiosRequestConfig) => {
@@ -16,13 +16,25 @@ const onRequestFulfilled = (requestConfig: AxiosRequestConfig) => {
   return requestConfig;
 };
 
+const onResponseFulfilled = (response: AxiosResponse) => {
+  const headers = response.headers
+  if(
+    headers?.['content-type']?.startsWith("application/json")
+  ){
+    return response.data
+  }else{
+    return response
+  }
+}
+
 const httpClient = new HttpClient({
   defaultRequestConfig: {
     baseURL: import.meta.env.VITE_API_URL, // api base_url
     timeout: import.meta.env.VITE_API_TIME_OUT,
   },
   interceptorOptions: {
-    onRequestFulfilled: onRequestFulfilled,
+    onRequestFulfilled,
+    onResponseFulfilled,
   },
 });
 

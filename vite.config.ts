@@ -34,7 +34,7 @@ export default defineConfig(({mode}:ConfigEnv):UserConfig=>  {
     vue(),
     vueJsx(),
     AutoImport({
-      imports: ["vue", "vue-router", "pinia",],
+      imports: ["vue", "vue-router", "pinia","@vueuse/core"],
       resolvers: [ElementPlusResolver()],
       dts: "./auto-imports.d.ts",
       // Generate corresponding .eslintrc-auto-import.json file.

@@ -18,6 +18,10 @@
 import { accountLogin } from "@/api/auth";
 import type { AccountLoginParam } from "@/api/auth/types";
 import type { FormInstance } from "element-plus";
+import { useUserStore } from "@/stores/userStore";
+import router from "@/router";
+
+const store = useUserStore()
 
 // type FormInstance = InstanceType(typeof ElForm);
 const loginFormRef = ref<FormInstance>();
@@ -33,7 +37,10 @@ const loginHandler = (formEl: FormInstance | undefined) => {
     if (!valid) return;
     loading.value = true;
     try {
-      const res = await accountLogin(loginForm);
+      const {access_token} = await accountLogin(loginForm);
+      debugger;
+      store.accessToken = access_token
+      router.push("/")
     } finally {
       loading.value = false;
     }
